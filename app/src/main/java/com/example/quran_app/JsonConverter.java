@@ -17,6 +17,7 @@ import java.util.List;
 public class JsonConverter {
 
     JSONArray verseArray;
+    int lengthOfArray;
     List<SurahRecord> surahRecords;
     List<VerseArray> verseContent;
     Context context;
@@ -36,7 +37,7 @@ public class JsonConverter {
                 builder.append(line);
             }
             verseArray = new JSONArray(builder.toString());
-            int lengthOfArray = verseArray.length();
+            lengthOfArray = verseArray.length();
 
             for (int i = 0; i < lengthOfArray; i++)
             {
@@ -66,4 +67,44 @@ public class JsonConverter {
         }
     }
 
+    public List<VerseArray> setContentParah(int parahNumber, String translationLanguage)
+    {
+        translationLanguage = "UrduTranslation";
+        verseContent.clear();
+        try {
+            for (int i = 0; i < lengthOfArray; i++) {
+                JSONObject jsonObject = verseArray.getJSONObject(i);
+                if(jsonObject.getInt("juz") == parahNumber) {
+                    verseContent.add(new VerseArray(jsonObject.getInt("number"),
+                            jsonObject.getString("text"),
+                            jsonObject.getString("surah_name"),
+                            jsonObject.getString(translationLanguage)));
+                }
+            }
+        } catch (JSONException e) {
+            Log.e("JSON Error", "Error parsing JSON object: " + e.getMessage());
+        }
+        return verseContent;
+    }
+
+    public List<VerseArray> setContentSurah(int surahNumber, String translationLanguage)
+    {
+        translationLanguage = "UrduTranslation";
+
+        verseContent.clear();
+        try {
+            for (int i = 0; i < lengthOfArray; i++) {
+                JSONObject jsonObject = verseArray.getJSONObject(i);
+                if(jsonObject.getInt("surah_number") == surahNumber) {
+                    verseContent.add(new VerseArray(jsonObject.getInt("number"),
+                            jsonObject.getString("text"),
+                            jsonObject.getString("surah_name"),
+                            jsonObject.getString(translationLanguage)));
+                }
+            }
+        } catch (JSONException e) {
+            Log.e("JSON Error", "Error parsing JSON object: " + e.getMessage());
+        }
+        return verseContent;
+    }
 }
