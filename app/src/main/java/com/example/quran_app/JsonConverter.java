@@ -18,8 +18,8 @@ public class JsonConverter {
 
     JSONArray verseArray;
     int lengthOfArray;
-    List<SurahRecord> surahRecords;
-    List<VerseArray> verseContent;
+    ArrayList<SurahRecord> surahRecords;
+    ArrayList<VerseArray> verseContent;
     Context context;
 
     public JsonConverter(Context context)

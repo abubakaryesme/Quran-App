@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-        ArrayList<SurahRecord> surahRecords = new ArrayList<>();
+        JsonConverter dataQuran = new JsonConverter(this);
+        ArrayList<SurahRecord> surahRecords = dataQuran.surahRecords;
 
         //RecordAdapter dataAdapter = new RecordAdapter(MainActivity.this, records);
         recyclerView = findViewById(R.id.recycler_view_surah);
