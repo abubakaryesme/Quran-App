@@ -2,6 +2,7 @@ package com.example.quran_app;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -70,7 +71,9 @@ public class JsonConverter {
     public List<VerseArray> setContentParah(int parahNumber, String translationLanguage)
     {
         translationLanguage = "UrduTranslation";
+        verseContent = new ArrayList<>();
         verseContent.clear();
+
         try {
             for (int i = 0; i < lengthOfArray; i++) {
                 JSONObject jsonObject = verseArray.getJSONObject(i);
@@ -90,7 +93,7 @@ public class JsonConverter {
     public List<VerseArray> setContentSurah(int surahNumber, String translationLanguage)
     {
         translationLanguage = "UrduTranslation";
-
+        verseContent = new ArrayList<>();
         verseContent.clear();
         try {
             for (int i = 0; i < lengthOfArray; i++) {
@@ -105,6 +108,8 @@ public class JsonConverter {
         } catch (JSONException e) {
             Log.e("JSON Error", "Error parsing JSON object: " + e.getMessage());
         }
+
         return verseContent;
+
     }
 }

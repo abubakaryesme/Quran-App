@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView2"
+        android:id="@+id/recycler_view_verse"
         android:layout_width="388dp"
         android:layout_height="624dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,7 +22,7 @@
         android:layout_marginBottom="25dp"
         android:text="QURAN WITH TRANSLATION"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView2"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_view_verse"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

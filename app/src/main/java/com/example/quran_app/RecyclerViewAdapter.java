@@ -1,6 +1,7 @@
 package com.example.quran_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +16,12 @@ import java.util.List;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private Context context;
     private List<SurahRecord> surahList;
-
-    public RecyclerViewAdapter(Context context,List<SurahRecord> surahList)
+    private JsonConverter ctr;
+    public RecyclerViewAdapter(Context context,List<SurahRecord> surahList, JsonConverter ctr)
     {
         this.context = context;
         this.surahList = surahList;
+        this.ctr = ctr;
     }
 
     @NonNull
@@ -54,7 +56,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         SurahRecord contentVerse;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            //itemView.setOnClickListener(this);
+            itemView.setOnClickListener(this);
 
             this.suraahName= itemView.findViewById(R.id.txt_surah_name);
             this.suraahNumber = itemView.findViewById(R.id.txt_surah_no);
@@ -65,8 +67,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public void onClick(View view)
         {
             int position = getAdapterPosition();
+            String surahName = surahList.get(position).getsurahName();
             int surahNo = surahList.get(position).getsurahNumber();
-            Toast.makeText(context, "suraah # "+surahNo, Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, surahName, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(context, MainActivity2.class);
+            intent.putExtra("surah_number", String.valueOf(surahNo + 30));
+            context.startActivity(intent);
+
         }
 
     }

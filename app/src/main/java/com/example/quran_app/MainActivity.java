@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +46,11 @@ public class MainActivity extends AppCompatActivity {
         btn_open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Activity Switch
+                int surahNo =  Integer.parseInt(parahSpinner.getSelectedItem().toString().split("#")[1]);;
+                Toast.makeText(MainActivity.this, "Parah # " + String.valueOf(surahNo), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                intent.putExtra("surah_number", String.valueOf(surahNo));
+                startActivity(intent);
             }
         });
 
@@ -56,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
-        recyclerViewAdapter = new RecyclerViewAdapter(MainActivity.this, surahRecords);
+        recyclerViewAdapter = new RecyclerViewAdapter(MainActivity.this, surahRecords, dataQuran);
         recyclerView.setAdapter(recyclerViewAdapter);
 
 
