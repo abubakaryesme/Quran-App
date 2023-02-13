@@ -32,7 +32,7 @@ public class MainActivity2 extends AppCompatActivity {
         }
         else
         {
-            verseRecords = dataQuran.setContentParah(surahNo -30, "UrduLanguage");
+            verseRecords = dataQuran.setContentParah(surahNo, "UrduLanguage");
         }
 
         recyclerViewVerse = findViewById(R.id.recycler_view_verse);

@@ -46,10 +46,13 @@ public class MainActivity extends AppCompatActivity {
         btn_open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int surahNo =  Integer.parseInt(parahSpinner.getSelectedItem().toString().split("#")[1]);;
-                Toast.makeText(MainActivity.this, "Parah # " + String.valueOf(surahNo), Toast.LENGTH_SHORT).show();
+                String surahStr =  parahSpinner.getSelectedItem().toString();
+                String siparaCoversion[]=surahStr.split("#");
+                siparaCoversion[1] = siparaCoversion[1].trim();
+                Integer surahStrToI = Integer.valueOf(siparaCoversion[1]);
+                Toast.makeText(MainActivity.this, siparaCoversion[1], Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, MainActivity2.class);
-                intent.putExtra("surah_number", String.valueOf(surahNo));
+                intent.putExtra("surah_number", String.valueOf(surahStrToI));
                 startActivity(intent);
             }
         });
